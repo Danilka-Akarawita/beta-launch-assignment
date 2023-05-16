@@ -16,6 +16,15 @@ const createEmployee =async(req,res)=>{
             res.status(400).send("Error")
     }
 }
+const getAllEmployeeDetailsbyAsc = async (req, res) => {
+    try {
+      const employeeDetail = await employeeSchema.find({}).sort({ fullName: 1 });
+      res.status(200).json(employeeDetail);
+    } catch (error) {
+      res.status(500).send("Error retrieving employee details from the database.");
+    }
+  };
+  
 
 const getAllEmployeeDetails = async(req, res) => {
     try{
@@ -50,21 +59,22 @@ const getAllEmployeeDetails = async(req, res) => {
   
     console.log({ ...req.body });
    
-    const account = await employeeSchema.findOneAndUpdate(
-      {  fullname: name },
+    const employee = await employeeSchema.findOneAndUpdate(
+      {  fullName: name },
       { ...req.body },
       {
         returnOriginal: false,
       }
     );
   
-    if (!account) return res.status(400).json({ error: "No account found" });
-    res.status(200).json(account);
+    if (!employee) return res.status(400).json({ error: "No account found" });
+    res.status(200).json(employee);
   };
 
 module.exports={
     createEmployee  ,
     getAllEmployeeDetails ,
     deleteElement,
-    updateEmployeeByName
+    updateEmployeeByName,
+    getAllEmployeeDetailsbyAsc
 }
