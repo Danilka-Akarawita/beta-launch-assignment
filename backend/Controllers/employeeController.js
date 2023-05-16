@@ -50,7 +50,7 @@ const getAllEmployeeDetails = async(req, res) => {
   
     console.log({ ...req.body });
    
-    const account = await clientAccountSchema.findOneAndUpdate(
+    const account = await employeeSchema.findOneAndUpdate(
       {  fullname: name },
       { ...req.body },
       {
