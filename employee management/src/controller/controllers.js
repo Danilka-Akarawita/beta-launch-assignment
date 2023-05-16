@@ -21,3 +21,15 @@ export const createEmployee = async (fullName, nameWithInital, email,mobile) => 
     const users = await response.json();
     return users;
   };
+
+export const deleteEmployee = async (id) => {
+  const data={_id:id}
+  console.log(data)
+  const response=await fetch(`http://localhost:5000/api/employee/delete/${id}`)
+  const json=await response.json()
+  {
+    method: "DELETE"
+    
+  }
+
+  }

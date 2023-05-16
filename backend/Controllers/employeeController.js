@@ -1,4 +1,5 @@
 const employeeSchema = require('../models/employeeSchema')
+const mongoose = require("mongoose");
 
 //create
 const createEmployee =async(req,res)=>{
@@ -28,7 +29,24 @@ const getAllEmployeeDetails = async(req, res) => {
       }
   }
 
+  const deleteElement = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const employee = await employeeSchema.findByIdAndDelete(id);
+  
+      if (!employee) {
+        return res.status(400).json({ error: "Employee not found" });
+      }
+  
+      res.status(200).json(employee);
+    } catch (error) {
+      res.status(500).send("Error deleting employee from database.");
+    }
+  };
+
 module.exports={
     createEmployee  ,
-    getAllEmployeeDetails  
+    getAllEmployeeDetails ,
+    deleteElement
 }
