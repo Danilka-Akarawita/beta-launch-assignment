@@ -15,6 +15,18 @@ const createEmployee =async(reqq,res)=>{
     }
 }
 
+const getAllEmployeeDetails = (req, res) => {
+    employeeSchema.find()
+      .then((employee) => {
+        res.status(200).json(employee)
+      })
+      .catch((err) => {
+        console.log(err)
+        res.status(500).send("Error retrieving employee details  from database.")
+      })
+  }
+
 module.exports={
-    createEmployee    
+    createEmployee  ,
+    getAllEmployeeDetails  
 }
