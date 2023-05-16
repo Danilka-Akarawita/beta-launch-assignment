@@ -1,5 +1,6 @@
 
 import AddingPage from './pages/AddingPage'
+import ViewPage from './pages/ViewPage'
 
 function App() {
   
@@ -8,6 +9,7 @@ function App() {
     <>
       
        <AddingPage/>
+       <ViewPage/>
     </>
   )
 }

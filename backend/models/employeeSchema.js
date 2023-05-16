@@ -38,7 +38,7 @@ const employeeSchema = new mongoose.Schema({
     validate: [validator.isEmail, 'Invalid email address']
   },
   mobile: {
-    type: Number,
+    type: String,
     required: true
   },
   // destination:{
