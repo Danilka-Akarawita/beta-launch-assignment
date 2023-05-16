@@ -44,9 +44,27 @@ const getAllEmployeeDetails = async(req, res) => {
       res.status(500).send("Error deleting employee from database.");
     }
   };
+  const updateEmployeeByName = async (req, res) => {
+    const { name } = req.params;
+  
+  
+    console.log({ ...req.body });
+   
+    const account = await clientAccountSchema.findOneAndUpdate(
+      {  fullname: name },
+      { ...req.body },
+      {
+        returnOriginal: false,
+      }
+    );
+  
+    if (!account) return res.status(400).json({ error: "No account found" });
+    res.status(200).json(account);
+  };
 
 module.exports={
     createEmployee  ,
     getAllEmployeeDetails ,
-    deleteElement
+    deleteElement,
+    updateEmployeeByName
 }

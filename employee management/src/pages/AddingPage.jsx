@@ -1,6 +1,8 @@
  import React from 'react'
  import { useState } from "react";
  import  {createEmployee} from "../controller/controllers";
+
+
  export default function AddingPage() {
   const [error, setError] = useState(null);
 
@@ -28,15 +30,24 @@
           setError(e.message);
         }
       };
-
+    const textfieldStyle={
+      padding: '10px',
+      fontSize: '16px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      outline: 'none',
+      boxShadow: 'none',
+      marginBottom: '10px'
+      };
+    
+    
 
        
 
 
    return (
     <div>
-       <div>
-      
+       <div style={{ display: 'flex', flexDirection: 'column' }}>
       <input
         type="text"
         placeholder="fullName"
@@ -44,6 +55,7 @@
         name="fullName"
         value={formData.fullName}
         onChange={handleFormChange}
+        style={textfieldStyle}
       />
       <input
         type="text"
@@ -52,6 +64,7 @@
         name="nameWithInital"
         value={formData.nameWithInital}
         onChange={handleFormChange}
+        style={textfieldStyle}
       />
       <input 
         type="text"
@@ -60,6 +73,7 @@
         name="email"
         value={formData.email}
         onChange={handleFormChange}
+        style={textfieldStyle}
       />
       <input
         type="text"
@@ -68,12 +82,22 @@
         name="mobile"
         value={formData.mobile}
         onChange={handleFormChange}
+        style={textfieldStyle}
       />
       </div>
-      <button onClick={handleAdd}>Add</button>
+      <button onClick={handleAdd}
+      style={{
+        padding: '10px',
+        backgroundColor: 'blue',
+        color: 'white',
+        borderRadius: '5px',
+        cursor: 'pointer'
+      }}
+      >Add people</button>
       </div>
       
  
    )
+    
  }
  

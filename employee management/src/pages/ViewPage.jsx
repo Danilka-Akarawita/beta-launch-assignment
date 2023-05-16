@@ -19,11 +19,19 @@ export default function ViewPage() {
       </div>
     );
   }
-  const handleDelete =async()=>{
-    const user=deleteEmployee()
-   
-    
-  }
+  
+
+  const handleDelete = async () => {
+    try {
+      const user = await deleteEmployee(users._id);
+      console.log(users._id)
+      console.log('Employee deleted successfully:', user);
+    } catch (error) {
+        
+      console.error('Error deleting employee:', error);
+    }
+  };
+  
   const cardStyle = {
     border: '1px solid gray',
     borderRadius: '8px',
@@ -42,10 +50,10 @@ export default function ViewPage() {
 
   return (
     <div style={containerStyle} >
-       {users.map((detail) => (
-        <div style={cardStyle}>
+       {users.map((detail,index) => (
+        <div style={cardStyle} key={index}>
 
-        <p key={detail._id}>{detail.fullName} <span>  {detail.email}</span> <span>{detail.mobile}</span> <span><button >Edit</button></span><span><button onClick={handleDelete}>Delete</button></span></p>
+        <p key={detail._id}>{detail.fullName} <span>  {detail.email}</span> <span>{detail.mobile}</span> <span><button onClick={handleDelete}>Delete</button></span></p>
       </div>
       ))}
     </div>
